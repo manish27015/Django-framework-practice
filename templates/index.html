@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block blockname %}
+
+<section class="hero-slider">
+
+    <div class="slides">
+
+        <!-- SLIDE 1 -->
+        <div class="slide">
+            <img src="{% static 'images/university.png' %}" alt="University">
+            <div class="slide-content">
+                <h1>Bright Future University</h1>
+                <p>Quality Education for a Brighter Tomorrow</p>
+
+                <a href="#about" class="btn">
+                    Discover More
+                </a>
+
+                <a href="#courses" class="btn">
+                    View Courses
+                </a>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide">
+            <img src="{% static 'images/university2.png' %}" alt="Students">
+
+            <div class="slide-content">
+                <h1>Learn With Excellence</h1>
+                <p>Build Your Skills and Knowledge</p>
+                <a href="#courses" class="btn">Explore Courses</a>
+                <a href="#about" class="btn second-btn">Learn More</a>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide">
+            <img src="{% static 'images/university3.png' %}" alt="Students">
+
+            <div class="slide-content slide3-buttons">
+                <a href="#courses" class="btn">Explore Courses</a>
+                <a href="tel:+919876543210" class="btn call-btn">📞 Call Now</a>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="prev" id="prevBtn">❮</button>
+    <button class="next" id="nextBtn">❯</button>
+
+    <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+</section>
+
+
+<!-- FEATURES : ONLY FIRST SLIDE -->
+
+<section class="features-section" id="features">
+
+    <div class="features-heading">
+        <h2>Some Features that Made us Unique</h2>
+        <p>Who are in extremely love with eco friendly system.</p>
+    </div>
+
+    <div class="features-container">
+        
+        {% for n in ServicesData  %}
+            
+        <div class="feature-card">
+            <h3>{{n.service_icon}} {{n.service_title}}</h3>
+
+            <p>{{n.service_des | capfirst | safe}}<p>
+        </div>
+        {% endfor %}
+
+
+    </div>
+
+</section>
+
+{% endblock %}

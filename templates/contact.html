@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+    {% block blockname %}
+
+{% comment %} {% include "header.html" %} {% endcomment %}
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+
+        <h2>
+            Contact Us
+        </h2>
+
+        <form id="contactForm">
+
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <textarea
+                id="message"
+                placeholder="Enter your message"
+                required
+            ></textarea>
+
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Send Message
+            </button>
+
+        </form>
+
+    </section>
+
+{% comment %} {% include "footer.html" %} {% endcomment %}
+{% endblock %}

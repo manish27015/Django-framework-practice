@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+    {% block blockname %}
+
+{% comment %} {% include "header.html" %} {% endcomment %}
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+
+        <h2>
+            USER FORM
+        </h2>
+
+        {% comment %} <form id="contactForm">
+
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+            >
+
+
+            <textarea
+                id="message"
+                placeholder="Enter your message"
+                required
+            ></textarea>
+
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Send Message
+            </button>
+
+        </form> {% endcomment %}
+        <div class="row">
+            <div class="col-12">
+                <form method="post" action="{% url 'submitform' %}">
+                {% csrf_token %}
+                {{form}}
+                    {% comment %} <div>
+                        <label for="">Value1</label>
+                        <input type="text" name="num1" value="{{n1}}" class="form-control"/>
+                    </div>
+                    <div>
+                        <label for="">Value2</label>
+                        <input type="text" name="num2" value="{{n2}}" class="form-control"/>
+                    </div> {% endcomment %}
+                    <div>
+                        <button type="submit">Save</button>
+                    </div>
+                    output
+                    <input type="text" value="{{output}}"/>
+                </form> 
+            </div>
+        </div>
+
+    </section>
+
+{% comment %} {% include "footer.html" %} {% endcomment %}
+{% endblock %}

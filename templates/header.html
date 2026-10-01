@@ -1,0 +1,70 @@
+{% load static %}
+
+<!-- CSS -->
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% load static %}
+
+<header>
+
+    <nav class="navbar">
+
+        <!-- Logo -->
+        <div class="logo">
+
+            <a href="/">
+                <img
+                    src="{% static 'images/logo.png' %}"
+                    alt="Bright Future University Logo"
+                >
+            </a>
+
+            <span>Bright Future University</span>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <ul class="nav-links" id="navLinks">
+            {% comment %} {{request.path}} {% endcomment %}
+
+            <li class="{% if request.path == '/' %} active {% endif %}">
+                <a href="/">Home</a>
+            </li>
+
+            <li class="{% if request.path == '/about/' %} active {% endif %}">
+                <a href="/about/">About</a>
+            </li>
+
+            <li class="{% if request.path == '/courses/' %} active {% endif %}">
+                <a href="/courses/">Courses</a>
+            </li>
+
+            <li class="{% if request.path == '/facilities/' %} active {% endif %}">
+                <a href="/facilities/">Facilities</a>
+            </li>
+
+            {% comment %} <li class="{% if request.path == '/contact/' %} active {% endif %}">
+                <a href="/contact/">Contact</a>
+            </li> {% endcomment %}
+            
+            
+            {% comment %} SECOND METHOD {% endcomment %}
+            {% url 'contact' as url %}
+            <li class="{% if request.path == url %}active{% endif %}">
+            <a href="{{ url }}">Contact</a>
+            </li>
+
+        </ul>
+
+
+        <!-- Mobile Menu -->
+        <button
+            type="button"
+            class="menu-btn"
+            id="menuBtn">
+            ☰
+        </button>
+
+    </nav>
+
+</header>

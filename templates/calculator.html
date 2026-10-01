@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% comment %}
+    {% block blockname %}
+
+    <section id="contact" class="section contact-section">
+
+        <h2>
+            CALCULATOR
+        </h2>
+        <div class="row">
+            <div class="col-12">
+                <form method="post">
+                    {% csrf_token %}
+                    <label>Value 1</label>
+                    <input type="text" name="num1" class="form-control"/>
+                    <label>Select OPR...</label>
+                    <select name="opr">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">*</option>
+                        <option value="/">/</option>
+                        <option value="%">%</option>
+                    </select>
+                    <label>Value 2</label>
+                    <input type="text" name="num2" class="form-control"/>
+
+                    <button type="submit">Calculate</button>
+                    <label>Output</label>
+                    <input type="text" value="{{c}}" class="form-control"/>
+                </form> 
+            </div>
+        </div>
+
+    </section>
+{% endblock %} {% endcomment %}
+
+
+
+{% block blockname %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="mb-0">CALCULATOR</h2>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">Value 1</label>
+                            <input
+                                type="text"
+                                name="num1"
+                                class="form-control"
+                                placeholder="Enter Value 1"
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Select Operator</label>
+
+                            <select name="opr" class="form-select">
+                                <option value="+">+</option>
+                                <option value="-">-</option>
+                                <option value="*">*</option>
+                                <option value="/">/</option>
+                                <option value="%">%</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Value 2</label>
+
+                            <input
+                                type="text"
+                                name="num2"
+                                class="form-control"
+                                placeholder="Enter Value 2"
+                            >
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary">
+                                Calculate
+                            </button>
+                        </div>
+
+                        <div>
+                            <label class="form-label">Output</label>
+
+                            <input
+                                type="text"
+                                value="{{ c }}"
+                                class="form-control"
+                                readonly
+                            >
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
