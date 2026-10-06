@@ -2,6 +2,14 @@
 {% load static %}
 
 {% block blockname %}
+<marquee onmouseover="stop()" onmouseout="start()">
+    
+    {% for news in newsData %}
+        <a href="/newsdetails/{{news.news_slug}}"> {{news.news_title}}</a> &nbsp;
+    {% endfor %}
+        
+</marquee>
+        
 
 <section class="hero-slider">
 
@@ -68,21 +76,53 @@
         <h2>Some Features that Made us Unique</h2>
         <p>Who are in extremely love with eco friendly system.</p>
     </div>
+        <form method="get">
+            <input type="text" name="servicename" value="" />
+            <input type="submit" value="search">
+        </form>
 
     <div class="features-container">
         
-        {% for n in ServicesData  %}
+        {% for n in servicesData  %}
             
         <div class="feature-card">
             <h3>{{n.service_icon}} {{n.service_title}}</h3>
 
             <p>{{n.service_des | capfirst | safe}}<p>
         </div>
+        {% empty %}
+        No data found
         {% endfor %}
-
-
     </div>
+    <nav aria-label="...">
+        <ul class="pagination">
+            {% if servicesData.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="/?page=1" tabindex="-1">First</a>
+            </li>
 
+            <li class="page-item">
+                <a class="page-link" href="/?page={{servicesData.previous_page_number}}" tabindex="-1">Previous</a>
+            </li>
+            {% endif %}
+
+            {% for n in totalPagelist%}
+
+            <li class="page-item"><a class="page-link" href="/?page={{n}}">{{n}}</a></li>
+            {% endfor %}
+
+            {% if servicesData.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="/?page={{lastpage}}">Last</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="/?page={{servicesData.next_page_number}}">Next</a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </nav>
 </section>
 
 {% endblock %}

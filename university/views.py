@@ -1,20 +1,44 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from .forms import usersForm
-from service.models import Service
+from service.models import Service, ContactEnquiry
+from news.models import News
+from django.core.paginator import Paginator
+
 
 def homePage(request):
-    ServicesData=Service.objects.all().order_by('service_title')[0:6]
+    newsData=News.objects.all();
+    ServicesData=Service.objects.all().order_by('service_title') 
+    if request.method=="GET":
+        st=request.GET.get('servicename')
+        if st!=None:
+            ServicesData = Service.objects.filter(service_title__icontains=st )
     #before column name mean descending order without - mean ascending
     # for a in ServicesData:
     #     print(a.service_icon)
     # print(Service)
+    paginator=Paginator(ServicesData, 2)
+    page_number=request.GET.get('page')
+    ServiceDatafinal=paginator.get_page(page_number)
+    totalpage=ServiceDatafinal.paginator.num_pages  
+    
     data={
-        'ServicesData':ServicesData
-
+        'ServicesData':ServicesData,
+        'newsData':newsData,
+        'servicesData':ServiceDatafinal,
+        'lastpage':totalpage,
+        'totalPagelist':[n+1 for n in range(totalpage)]
     }
     
     return render(request,'index.html',data)
+
+
+def newsDetails(request,slug):
+    newsDetails=News.objects.get(news_slug=slug)
+    data={
+        'newsDetails':newsDetails
+    }
+    return render(request, "newsdetails.html",data)
 
 def aboutUS(request):
     return HttpResponse("<b>Welcome to Wscubtech</b>")
@@ -41,6 +65,28 @@ def facilities(request):
 
 def contact(request):
     return render(request, "contact.html")
+
+
+def saveEnquiry(request):
+
+    if request.method == "POST":
+
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        courses = request.POST.get('courses')
+        message = request.POST.get('message')
+
+        en=ContactEnquiry(
+            name=name,
+            email=email,
+            phone=phone,
+            courses=courses,
+            message=message
+        )
+        en.save()
+        n='Data Inserted'
+    return render(request, 'contact.html',{'n':n})
 
 def saveevenodd(request):
     c=''

@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from  university import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,9 +28,15 @@ urlpatterns = [
     path('calculator/', views.calculator),
     path('facilities/', views.facilities),
     path('contact/', views.contact, name="contact"),
+    path('saveenquiry/', views.saveEnquiry, name="saveenquiry"),
     path('userform',views.userForm),
     path('submitform/',views.submitform, name="submitform"),
     path('saveevenodd',views.saveevenodd),
     path('marksheet',views.marksheet),
+    path('newsdetails/<slug>',views.newsDetails),
+    
     
 ]
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -9,41 +9,54 @@
             Contact Us
         </h2>
 
-        <form id="contactForm">
-
+        <form method="post" action="{% url 'saveenquiry' %}" id="contactForm">
+            {{n}}
+        {% csrf_token %}
 
             <input
                 type="text"
                 id="name"
+                name="name"
                 placeholder="Enter your name"
                 required
             >
 
-
             <input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="Enter your email"
                 required
             >
 
+            <input
+                type="text"
+                id="phone"
+                name="phone"
+                placeholder="Enter your Number"
+                required
+            >
+
+            <input
+                type="text"
+                id="courses"
+                name="courses"
+                placeholder="Enter your Courses"
+                required
+            >
 
             <textarea
                 id="message"
+                name="message"
                 placeholder="Enter your message"
                 required
             ></textarea>
 
-
-            <button
-                type="submit"
-                class="btn"
-            >
+            <button   button type="submit" class="btn">
                 Send Message
             </button>
 
         </form>
-
     </section>
 
 {% comment %} {% include "footer.html" %} {% endcomment %}

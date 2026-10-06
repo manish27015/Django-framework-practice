@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+    {% block blockname %}
+
+{% comment %} {% include "header.html" %} {% endcomment %}
+
+    
+
+    
+<!-- About Section -->
+{{output}}
+    <section id="about" class="section">
+
+        <h2>
+            {{newsDetails.news_title}}
+        </h2>
+
+        {% if newsDetails.news_image != NULL %}
+        <img src="/media/{{newsDetails.news_image}}">
+        {% endif %}
+        
+        <p class="about-text">
+
+            {{newsDetails.news_desc | safe}}
+
+        </p>
+
+    </section>
+
+
+    {% endblock %}
+

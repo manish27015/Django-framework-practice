@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'service'
+    'service',
+    'tinymce',
+    'news'
 ]
 
 MIDDLEWARE = [
@@ -119,6 +121,10 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS=[
     BASE_DIR,"static"
 ]
+
+MEDIA_ROOT =BASE_DIR /"media"
+MEDIA_URL ="/media/"
+
 
 
 # Email
